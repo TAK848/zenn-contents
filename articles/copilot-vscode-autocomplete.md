@@ -3,7 +3,7 @@ title: "VSCodeでcopilot+neovimを使っていると，IntelliSenseがうまく�
 emoji: "🤖"
 type: "tech" # tech: 技術記事 / idea: アイデア
 topics: ["vscode","copilot","neovim","vim","IntelliSense"]
-published: true
+published: false
 ---
 
 # 発生した問題
