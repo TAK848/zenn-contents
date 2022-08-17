@@ -23,11 +23,11 @@ Copilotを無効化せずにCopilot自身のの補完を無視するには，Esc
 
 # 解決策
 copilotのEscをそれ以外のキーに変えられれば本来はよかったのですが，ダメそうだったので，Neovim拡張（vimでも同じだと思う）からEscを無効化することにしました。
-cmd+k→cmd+sでキーボードショートカット一覧を表示し，「neovim esc」で検索しました。その上で，KeybindingがEscになっている箇所を，ctrl+[に変更することで，EscでCopilotの打消のみを行うようにしたことで，無事にIntelliSenseが動くようになりました。
+`cmd+k`→`cmd+s`でキーボードショートカット一覧を表示し，「neovim esc」で検索しました。その上で，KeybindingがEscになっている箇所を，`ctrl+[`に変更することで，EscでCopilotの打消のみを行うようにしたことで，無事にIntelliSenseが動くようになりました。
 ![fix](/images/copilot-vscode-autocomplete/fix.png)
 （↑SourceがUserとなっている部分が，いじった箇所）
 
 ![わーい](/images/copilot-vscode-autocomplete/lgtm.png)
 
 # 一言
-僕はVimのEscをctrl+[で普段から行っていたためよかったのですが，そうではないときついかなと思います…。根本的な解決策はあるのでしょうか…？
+僕はVimのEscを`ctrl+[`で普段から行っていたためよかったのですが，そうではないときついかなと思います…。根本的な解決策はあるのでしょうか…？
