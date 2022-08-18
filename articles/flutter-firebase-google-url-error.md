@@ -7,7 +7,7 @@ published: true
 ---
 
 # 発生した問題
-以下の記事
+Flutter勉強中，以下の記事
 https://zenn.dev/kazutxt/books/flutter_practice_introduction/viewer/chapter4_authentication#google%E3%82%A2%E3%82%AB%E3%82%A6%E3%83%B3%E3%83%88%E3%81%AB%E3%82%88%E3%82%8B%E8%AA%8D%E8%A8%BC
 を参考に，手順通りFirebaseを使用したGoogleログインを試していたつもりだったのが，iOSでの検証で
 ```
