@@ -2,7 +2,7 @@
 title: "OpenVPNをオレオレCAのサーバー・クライアント証明書で設定[Ubuntu 22.04 LTS]"
 emoji: "🔑"
 type: "tech" # tech: 技術記事 / idea: アイデア
-topics: ["OpenVPN", "Ubuntu", "Route53", "easyrsa"]
+topics: ["OpenVPN", "Ubuntu", "easyrsa"]
 published: true
 ---
 
