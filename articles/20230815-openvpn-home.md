@@ -748,7 +748,7 @@ proto tcp
 # The hostname/IP and port of the server.
 # You can have multiple remote entries
 # to load balance between the servers.
-remote et.imac.4xq8.in.tak848.net 61443
+remote myserver.example.com 61443
 ;remote my-server-2 1194
 
 # Choose a random host from the remote
