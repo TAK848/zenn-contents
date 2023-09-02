@@ -14,7 +14,7 @@ IPv4・IPv6双方のルーティングの設定・DNSの設定も行いました
 
 これらの備忘録として，Ubuntuのインストールも含め，備忘録として概要をこちらにまとめておきます。
 
-## Ubuntuのインストール
+## Intel MacへのUbuntuのインストール
 
 OSのインストールは，詳しい人がいろんな記事を書いてくれていると思うので，流れだけメモしておきます。
 
@@ -22,10 +22,10 @@ OSのインストールは，詳しい人がいろんな記事を書いてくれ
 2. [公式](https://jp.ubuntu.com/download)もしくは[ミラーサイト](https://www.ubuntulinux.jp/download/ja-remix)から，`ubuntu-ja-22.04-desktop-amd64.iso`を落とします。
 3. `shasum -a 256 ubuntu-ja-22.04-desktop-amd64.iso`でハッシュ値を確認します（任意だけどやったほうが良いと思う）。
 4. [Etcher](https://www.balena.io/etcher/)などを使って，インストールディスクを作成します。
-5. インストールディスクをMBPに挿入し，optionを押しながら起動します。
+5. インストールディスクをMacに挿入し，optionを押しながら起動します。
 6. 指示に従ってインストールします。SSDをそのままvolumeとして使うように設定できました。
 7. 完了したら，ネットワークの設定や，SSHの設定などを行います。SSHのパスワード認証は早めに無効にしておきましょう。
-8. https://github.com/t2linux/T2-Ubuntu-Kernel をいれる
+8. T2セキュリティチップ搭載機種の場合，https://github.com/t2linux/T2-Ubuntu-Kernel をいれる
 
 :::details sshの設定
 
