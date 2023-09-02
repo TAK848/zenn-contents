@@ -95,13 +95,15 @@ update_t2_kernel
 
 ## OpenVPNのインストール
 
-証明書の作成には，`easy-rsa`を使用します。
+証明書の作成には，`easy-rsa`を使用するため，追加でインストールします。
 
 ```bash
 sudo apt install openvpn easy-rsa
 ```
 
 ## 各証明書の作成
+
+まずは，サーバーやクライアントが正規のものであることを証明するためのオレオレCAを作り，それを使ってサーバー・クライアントそれぞれの証明書を作成しましょう。
 
 ```bash
 $ make-cadir ~/openvpn-ca
@@ -126,21 +128,19 @@ $ ./easyrsa build-ca
 
 ```bash
 ./easyrsa build-client-full client-sample nopass # ここで，先ほどのCAのpassphraseを入力する
-# ./easyrsa gen-req client-example nopass
-# ./easyrsa sign-req client client-example # ここで，passphraseを入力する
 ```
 
 ### サーバー証明書作成
 
-以下で完了します。`server`は任意の名前でOKです。
+以下で完了します。`server-example`は任意の名前でOKです。
 
 ```bash
-./easyrsa build-server-full server-example nopass
-# ./easyrsa gen-req server-example nopass
-# ./easyrsa sign-req server server-example # ここで，passphraseを入力する
+./easyrsa build-server-full server-example nopass # ここで，先ほどのCAのpassphraseを入力する
 ```
 
 ### dhパラメータの作成
+
+証明書とは別に，TLSのパラメータとして，`dh.pem`を作成します。
 
 ```bash
 ./easyrsa gen-dh
@@ -213,6 +213,8 @@ sudo openvpn --genkey secret /etc/openvpn/ta.key # /home/username配下ならsud
 ### サーバー側confの作成
 
 #### server用テンプレートのコピー
+
+まずは，サーバー用のテンプレートを適当な場所にコピーします。ここでは最初から`/etc/openvpn/`にコピーしてしまいます。
 
 ```bash
 sudo cp /usr/share/doc/openvpn/examples/sample-config-files/server.conf /etc/openvpn/
@@ -658,6 +660,8 @@ proto udp # tcpにもできる
 remote myserver.example.com 1194 # サーバーのIPもしくはホスト名とポート番号
 ```
 
+ここで，remoteを複数にもできるようですが，試していません。この場合，CAは共有する必要があるので，CAや証明書をちゃんと管理できるようになってからにしましょう。
+
 #### 各証明書の埋め込み
 
 サーバー証明書検証用のCA，クライアント証明書，クライアント証明書の秘密鍵，TLSのパラメータを埋め込みます。
@@ -971,6 +975,8 @@ sudo systemctl start openvpn@server-example
 ここでエラーが出た場合は，`journalctl -xeu openvpn@server-tcp.service`を実行してみたり，OpenVPNのログファイル`/var/log/openvpn/openvpn.log`などを確認してみてください。
 
 ## iOSなどからの接続
+
+ルーターなどのポートフォワーディングの設定を，各ルーターのマニュアルを参考にまず行います。
 
 OpenVPN Connectアプリをインストールします。
 
