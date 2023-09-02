@@ -1,18 +1,16 @@
 ---
 title: "OpenVPNをオレオレCAのサーバー・クライアント証明書で設定[Ubuntu 22.04 LTS]"
-emoji: "🎃"
+emoji: "🔑"
 type: "tech" # tech: 技術記事 / idea: アイデア
 topics: ["OpenVPN", "Ubuntu", "Route53", "easyrsa"]
-published: false
+published: true
 ---
 
 ## はじめに
 
 手元にあった，昔のMacBook ProのSSDが故障したため，これを機に外付けSSDを接続・Ubuntuをインストールし，OpenVPNサーバーを立てて，iOSなどのクライアントから接続できるようにしてみました。
 
-<!-- 過程で，サーバーの証明書はLet's EncryptをDNS認証で使用してみることにしました。DNSはRoute53を使用しているので，Route53のみの権限を用意したIAMを用意して，これを使っていきます。（失効の厳密管理などを考えるとあまりよくないかも） -->
-
-IPv4・IPv6双方のルーティングの設定も行いました。
+IPv4・IPv6双方のルーティングの設定・DNSの設定も行いました。
 
 これらの備忘録として，Ubuntuのインストールも含め，備忘録として概要をこちらにまとめておきます。
 
@@ -209,70 +207,6 @@ sudo openvpn --genkey secret /etc/openvpn/ta.key # /home/username配下ならsud
 ```
 
 こちらはサーバー側・クライアント側ともに使用します。
-
-<!-- ### サーバー証明書
-
-#### 前提条件
-
-* `~/.aws`に，Route53を操作可能なIAMユーザーのクレデンシャルが保存されていること（今回は，openvpn-route53という名前で作成した）
-  * `aws configure --profile openvpn-route53`などで設定すればOK。
-
-
-
-#### dockerを使わない場合
-
-##### 必要パッケージインストール
-
-```bash
-sudo apt install certbot python3-certbot-dns-route53
-```
-
-##### 作成
-
-```bash
-sudo AWS_PROFILE=openvpn-route53 certbot certonly --dns-route53 -d ca.openvpn.example.com
-```
-
-* `/etc/letsencrypt/live/ca.openvpn.example.com/fullchain.pem`
-* `/etc/letsencrypt/live/ca.openvpn.example.com/privkey.pem`
-
-以上の2つを，サーバー証明書として使用します。
-自動更新については，AWS_PROFILEがdefaultであればsystemctlで簡単に自動更新できるようですが，今回はopenvpn-route53という名前のprofileを使用しているため，cronなどを使って自動更新すると良い気がします。
-
-#### docker composeを使う場合
-
-以下を参考に`compose.yaml`を作成します。
-
-```yaml
-version: "3.8"
-
-services:
-  certbot:
-    image: certbot/dns-route53
-    container_name: certbot
-    command: certonly --dns-route53 -d openvpn.example.com
-    volumes:
-      - ./etc/letsencrypt:/etc/letsencrypt
-      - ./var/lib/letsencrypt:/var/lib/letsencrypt
-      - ~/.aws:/root/.aws
-    environment:
-      - AWS_PROFILE=route53 # AWSのprofileをここに指定
-    stdin_open: true
-    tty: true
-```
-
-```bash
-docker compose run certbot
-```
-
-とすることで，カレントディレクトリに
-
-* `etc/letsencrypt/live/openvpn.example.com/fullchain.pem`
-* `etc/letsencrypt/live/openvpn.example.com/privkey.pem`
-
-が作成されます。volumesの設定を変えれば，任意の場所に保存することもできます。
-
-自動更新についてはまだあまり考えていないので，後で追記したいと思います。 -->
 
 ## 設定ファイルの作成
 
@@ -1044,26 +978,9 @@ OpenVPN Connectアプリをインストールします。
 
 プロファイル名を入力して，接続・通信できれば完了です。
 
-<!-- ## 詰まったポイント
+@[card](https://test-ipv6.com/)
+などをみたり，ローカルのサービスにアクセスするなどしてニヤニヤしましょう。
 
-### UDPだと2分で切れる
-
-:::details iptablesに使用するネットワークインターフェイス指定
-
-:::
-
-:::details IPv6は/64-128である必要あり
-寝ぼけて
-
-```diff conf
-- server-ipv6 fd00:1234:5678:::/64
-- server-ipv6 fd00:1234:5678:9abc:::/48
-```
-
-としたら，サブネットマスクのエラーが出ました。64-128にしろと。
-
-冷静に見てみると，48ではなくて80ですよね。
-::: -->
 ## おわりに
 
 ここまでで，ひとまずOpenVPNサーバーの設定は完了です。
