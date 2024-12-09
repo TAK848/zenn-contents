@@ -3,7 +3,7 @@ title: "学生最後のISUCON14に一人で出て30位以内に入ったと思�
 emoji: "💣"
 type: "tech" # tech: 技術記事 / idea: アイデア
 topics: ["isucon", "go", "nginx", "mysql"]
-published: false
+published: true
 ---
 
 こんにちは。いや，こんいす。
