@@ -6,7 +6,7 @@ topics: ["isucon", "go", "nginx", "mysql"]
 published: true
 ---
 
-こんにちは。いや，こんいす。
+こんにちは。いや，こんいす〜！！
 東京理科大学工学部電気工学科の学部4年，25卒で株式会社LayerX入社予定の[@TAK848](https://github.com/TAK848)です。
 12月8日に開催されたISUCON14に，学生最後の記念として（？），1人でチーム名「tak」の「tak」として参加しました。
 
@@ -25,6 +25,11 @@ published: true
 いや，失格は失格です！
 
 対戦ありがとうございました！！精進します！！
+
+:::details (追記)
+あとからみたら，ちゃんと失格でした
+![isucon-fail](/images/20241208-isucon14-writeup/isucon-fail.png)
+:::
 
 ## 失格の原因
 
@@ -49,7 +54,7 @@ pproteinのデプロイ記事に，Cloudformationで同じVPCに！と書いて�
 ![Scoreboard](/images/20241208-isucon14-writeup/scoreboard.png)
 
 リポジトリはこちらです。
-https://github.com/TAK848/isucon14
+https://github.com/TAK848/isucon14/tree/isucon14-archive
 
 ### 爆速デプロイ&焦り
 
@@ -109,6 +114,11 @@ alpの結果を見るとapp・chairのnotificationエンドポイントがボト
 
 ただ，マニュアルにSSE（Server-Sent Events）を使って良いと書いてあったので，調べながら実装をはじめたんですが，ChatGPTとも話して進めながらも何も知らなすぎてこの時間でやるのは無理じゃね？と思ってきました。
 そこでよく見ると，通知のリクエスト間隔をレスポンスのRetryAfterから設定できることを知り，みたら30msに固定になっていたので一気に10倍の300msにしました。そしたら最終的にスコアが7000くらいへと1.7倍くらいになりました。
+
+https://github.com/TAK848/isucon14/commit/f3678259c535a93f4ca782cd440c3fa38274ba0a
+https://github.com/TAK848/isucon14/commit/ab148876213f9ce1999dacf7a8c14ecbe9137148
+https://github.com/TAK848/isucon14/commit/2408f59e2573dcb926234d136287f9695a788bc8
+
 ISUCONのことだからどうせこれやらなくても，他潰すとスコアあがるだろうなーと思い，次に行くことにしました。
 
 ### 観光名所のSQLを消した
@@ -212,7 +222,7 @@ https://github.com/TAK848/isucon14/commit/9f6ce913e7b6c4e1ab65d2b31e893778e51e78
 
 ### db分割
 
-17:30になり，流石にわけんとまずいとなり，dbを別サーバーにしました。
+17:30になり，流石に分けんとまずいとなり，dbを別サーバーにしました。
 これでスコアが23,000くらいになりました。
 その後，internalエンドポイントの処理を別サーバーになんとなく分けたつもりができてませんでした。
 
@@ -250,7 +260,12 @@ DBのスキーマやデータをサッと見たり編集したり書き出した
 
 ![tableplus](/images/20241208-isucon14-writeup/tableplus.png)
 
+Setappで入れています。
+https://setapp.com/
+
 ### SSH Config Editor
+
+これもSetappで入れられます。
 
 https://setapp.com/apps/ssh-config-editor
 
