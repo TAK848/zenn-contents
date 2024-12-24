@@ -3,7 +3,7 @@ title: "ISUCONでいいかんじにスキルアップしよう"
 emoji: "💺"
 type: "tech" # tech: 技術記事 / idea: アイデア
 topics: ["isucon"]
-published: false
+published: true
 ---
 
 こんばんは。いや，こんいす〜！
