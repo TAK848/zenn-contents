@@ -2,7 +2,7 @@
 title: "学生最後のISUCON14に一人で出て30位以内に入ったと思ったら失格だった！😇"
 emoji: "💣"
 type: "tech" # tech: 技術記事 / idea: アイデア
-topics: ["isucon", "go", "nginx", "mysql"]
+topics: ["isucon", "isucon14", "go", "nginx", "mysql"]
 published: true
 ---
 
